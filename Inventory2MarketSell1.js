@@ -41,7 +41,7 @@ exports.default = {
         },
         buttons() {
             return [{
-                is_disabled: this.price_new.total < this.price_best*0.9 || this.price_new.total > 15e3,
+                is_disabled: this.price_new.total < this.price_best*0.99 || this.price_new.total > 15e3,
                 title: "Выставить на продажу",
                 color: "grass",
                 emit: "sell"
@@ -88,7 +88,7 @@ exports.default = {
             const e = await API.callMethod("market.getBestPrice", {
                 thing_prototype_id: this.item_proto_id
             });
-            0 === e.code && (this.price_best = l(e.data.price, -1))
+            0 === e.code && (this.price_best = l(e.data.price, -1), this.price_new.total = this.price_best)
         },
         async loadBestPriceSouvenir() {
             this.price_best_souvenir = null;
