@@ -42,7 +42,7 @@ exports.default = {
         buttons() {
             return [{
                 is_disabled: this.price_new.total < this.price_best*0.99 || this.price_new.total > 15e3,
-                title: "Выставить на продажу",
+                title: "Выставить на продажу1",
                 color: "grass",
                 emit: "sell"
             }]
