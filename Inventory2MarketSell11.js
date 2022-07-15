@@ -113,7 +113,7 @@ exports.default = {
             0 === e.code && (
                 this.price_best = l(e.data.things[0].price, -1),
                 (e.data.things[0].user_id == API.user.user_id && (this.first = true)), 
-                this.price_new.total = tofloatfix2(this.price_best - (this.first ? 0.01 : 0))
+                this.price_new.total = tofloatfix2(this.price_best - (this.first ? 0 : 0.01))
                 )
 
             await this.$nextTick(),
