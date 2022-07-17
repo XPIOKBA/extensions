@@ -32,7 +32,7 @@ exports.default = {
             receive: null
         },
         first: false,
-        last: localStorage.lastsellprice ? localStorage.lastsellprice : 1234
+        last: JSON.parse(localStorage.lastsellprice)[this.item.thing_prototype_id] ? JSON.parse(localStorage.lastsellprice)[this.item.thing_prototype_id] : 0
     }),
     computed: {
         item_id() {
@@ -154,7 +154,9 @@ exports.default = {
         },
         async sell() {
             this.is_buttons_processing = !0;
-            localStorage.lastsellprice[this.item_proto_id] = this.price_new.total;
+            let lastprices = JSON.parse(localStorage.lastsellprice) ? JSON.parse(localStorage.lastsellprice) : {};
+            lastprices[this.item_proto_id] = this.price_new.total
+            localStorage.lastsellprice = JSON.stringify(lastprices);
             const e = await API.call("market.sell", {
                 thing_id: this.item_id,
                 price: this.price_new.total
